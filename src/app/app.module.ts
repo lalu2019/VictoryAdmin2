@@ -19,7 +19,7 @@ import { LoaderComponent } from './_shared/loader/loader.component';
 
 
 import { AngularFirestoreModule , AngularFirestore, } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorageModule, AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 // import {
 //   AngularFireStorageModule,
@@ -66,7 +66,8 @@ import { AgmCoreModule } from '@agm/core';
     // AngularFireDatabaseModule,
     // AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase, 'krisheebazar'),
-    AngularFirestoreModule,
+    AngularFirestoreModule, // added to resolve storage not a function in production
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
