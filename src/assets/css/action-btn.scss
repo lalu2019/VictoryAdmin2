@@ -1,0 +1,43 @@
+%action-btn {
+    background: #fff;
+    padding: 5px 6px;
+
+    i {
+        font-size: 14px;
+    }
+}
+
+.edit-action-btn {
+    @extend %action-btn;
+    border: 1px solid #008000;
+    i {
+        color: #008000;
+    }
+}
+
+.delete-action-btn {
+    @extend %action-btn;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    i {
+        color: #ff0000;
+    }
+}
+
+.view-action-btn {
+    @extend %action-btn;
+    border: 1px solid #dcdc03;
+    color: #dcdc03;
+    i {
+        color: #dcdc03;
+    }
+}
+
+.comment-action-btn {
+    @extend %action-btn;
+    border: 1px solid #00a1ff;
+    color: #00a1ff;
+    i {
+        color: #00a1ff;
+    }
+}

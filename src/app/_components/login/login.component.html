@@ -1,0 +1,61 @@
+
+<div class="login-wraper">
+  <div class="login-container">
+    <div class="info-form-wrap">
+      <div class="outer-card">
+        <div class="login-outer-card">
+          <!-- <div class="from-group">
+            <h1 class="form-header">Login</h1>
+          </div> -->
+
+
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <img src="../../../assets/images/application_logo.png" class="logo">
+            </div>
+
+            <div class="col-md-12">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                  <div class="group">
+                    <input class="form_field form-control" type="text" formControlName="email" placeholder="Enter Email"
+                      [ngClass]="{ 'is-invalid': isSubmitted && form.email.errors }" autocomplete="off" />
+                    <label for="email" class="form_label">Username</label>
+                    <i class="fa fa-user"></i>
+                    <div div *ngIf="isSubmitted && form.email.errors" class="errorHandle">
+                      <div *ngIf="form.email.errors.required">Email is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="group">
+                    <input type="password" value="" formControlName="passWord" placeholder="Enter Password"
+                      class="form_field form-control" name="Password"
+                      [ngClass]="{ 'is-invalid': isSubmitted && form.passWord.errors }" autocomplete="off" />
+                    <label for="passWord" class="form_label">Password</label>
+                    <i class="fa fa-lock"></i>
+                    <div *ngIf="isSubmitted && form.passWord.errors" class="errorHandle">
+                      <div *ngIf="form.passWord.errors.required">Password is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="">
+                    <button type="submit" class="btn btn-primary mt-10">
+                      Login
+                    </button>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

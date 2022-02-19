@@ -1,0 +1,76 @@
+<div class="sidebar-sticky">
+  <ul class="nav nav-top flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" [ngClass]="{'active': menuType == 'dashboard'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('dashboard')">
+        <i class="fa fa-tachometer" style="font-size: 20px;"></i>
+        Dashboard
+      </a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'users'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('users')">
+        <i class="fa fa-users" style="font-size: 20px;"></i>
+        User Section
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'category'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('category')">
+        <i class="fa fa-list" style="font-size: 20px;"></i>
+        Categories
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'Rate'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('Rate')">
+        <i class="fa fa-tag" style="font-size: 20px;"></i>
+        Rate
+      </a>
+    </li> -->
+    
+    <!-- <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'tests'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('tests')">
+        <i class="fa fa-mortar-board" style="font-size: 20px;"></i>
+        Test Section
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'tasks'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('tasks')">
+        <i class="fa fa-tasks" style="font-size: 20px;"></i>
+        Task Section
+      </a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': menuType == 'setting'}" style="font-size: 15px;"
+        (click)="onClickLeftMenu('setting')">
+        <i class="fa fa-gear" style="font-size: 20px;"></i>General Manager
+      </a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a href="https://drive.google.com/drive/folders/1XH6gkkeFdEghD_aKHMPpoVivRLKOaV-R?usp=sharing" class="nav-link"
+        target="_blank" style="font-size: 15px;color:#3e78de;">
+        <i class="fa fa-upload" style="font-size: 20px;"></i>Google Drive
+      </a>
+    </li> -->
+  </ul>
+
+
+
+  <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+    <span>Settings</span>
+    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+      <span data-feather="plus-circle"></span>
+    </a>
+  </h6> -->
+  <ul class="nav flex-column mb-2">
+    <li class="nav-item">
+      <a class="nav-link" (click)="onLogout()" style="font-size: 15px; font-weight: normal;">
+        <i class="fa fa-power-off" style="font-size: 15px;" x></i>
+        Logout
+      </a>
+    </li>
+  </ul>
+</div>
