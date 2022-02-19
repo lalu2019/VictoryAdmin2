@@ -1,0 +1,337 @@
+
+
+   <div align="center" style="margin-top:20px">
+
+  
+   <input type="file" id="fileImport">
+
+ 
+
+   <div class="dashboard-grid-heading">Send Notification</div>
+   
+     <form [formGroup]="sendNotificationForm">
+       <div class="customSection">
+         <div class="row">
+           <div class="col col-6 form-group">
+ 
+             <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="messageText">
+           </div>
+          
+           <div class="col col-5 form-group">
+             <!-- <angular-editor id="membershipCreateAndEditEditor" formControlName="description" [config]="editorConfig"></angular-editor> -->
+             <input class="form-control mr-10" placeholder="Enter Description" formControlName="messageDescription">
+           </div>
+ 
+         </div>
+ 
+       </div>
+       <div align="center" style="margin-top:20px">
+ 
+         <button type="button"  class="btn btn-success"
+           [disabled]="!sendNotificationForm.valid" (click)="notificationProcess()">Submit</button>
+       
+       </div>
+     </form>
+   
+      <hr>
+
+     <div class="dashboard-grid-heading">Create Main Category</div>
+   
+     <form [formGroup]="mainCategory">
+       <div class="customSection">
+         <div class="row">
+           <div class="col col-6 form-group">
+             <input type="text" style="margin-left: 10px;" class="form-control" id="title" placeholder="Category Name" formControlName="name">
+           </div>
+           <div class="col col-5 form-group">
+            <!-- <input type="text" class="form-control" id="title" placeholder="Status" formControlName="status"> -->
+            <select  class='form-control' formControlName="status">
+                <option value='' disabled>Select Status</option>
+                <option value='Active'>Active</option>
+                <option value='In Active'>In Active</option>
+              </select>
+          </div>
+           <div class="col col-6 form-group">
+            <input class="form-control mr-10" type="file" placeholder="Icon Link" >
+           </div>
+           <div class="col col-5 form-group">
+             <!-- <angular-editor id="membershipCreateAndEditEditor" formControlName="description" [config]="editorConfig"></angular-editor> -->
+             <input class="form-control mr-10" placeholder="Icon Link" formControlName="icon">
+           </div>
+           <div class="col col-5 form-group">
+            <select  style="margin-left: 10px;" class='form-control' formControlName="type">
+                <option value='' disabled>Select Type</option>
+                <option value='New'>New</option>
+                <option value='Old'>Old</option>
+              </select>
+            </div>
+         </div>
+ 
+       </div>
+       <div align="center" style="margin-top:20px">
+ 
+         <button type="button" *ngIf="!mainCategory.value.id" class="btn btn-success"
+           [disabled]="!mainCategory.valid" (click)="createCategory()">Submit</button>
+           <button type="button" *ngIf="mainCategory.value.id" class="btn btn-success"
+           [disabled]="!mainCategory.valid" (click)="UpdateMainCat()">Update</button>
+       
+       </div>
+     </form>
+  <div class="dashboard-user-table">
+    <div class="dashboard-grid-heading">Main Collection</div>
+    <p>Total : {{enquiryList.length}} </p>
+    <div class="table-responsive-sm">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Category Name</th>
+            <th>Active</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of enquiryList">
+            <td>
+              <img src="./../../../assets/images/parent/{{record.icon}}" alt="User Pic">
+            </td>
+            <td>{{record.name}}</td>
+            <td>{{record.status}}</td>
+           
+            <td>
+                <!-- <span>
+                    <a class="view-action-btn mr-5" >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </span> -->
+              <span>
+                <a class="edit-action-btn mr-5" (click)="editAction(record)" >
+                  <i class="fa fa-pencil"></i>
+                </a>
+              </span>
+              <!-- <span>
+                <a class="delete-action-btn" (click)="deleteMain(record)">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </span> -->
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <div class="dashboard-grid-heading">Create Child Category</div>
+
+  <form [formGroup]="childCategory">
+    <div class="customSection">
+      <div class="row">
+        <div class="col col-6 form-group">
+          <input type="text" style="margin-left: 10px;" class="form-control" id="title" placeholder="Category Name" formControlName="name">
+        </div>
+        <div class="col col-5 form-group">
+         <!-- <input type="text" class="form-control" placeholder="Parent" formControlName="parent"> -->
+         <select  class='form-control' formControlName="parent">
+            <option value='' disabled>Select Parent Category</option>
+            <option *ngFor="let item of enquiryList" value="{{item.id}}">{{item.name}}</option>
+          </select>
+       </div>
+       <div class="col col-6 form-group">
+        <!-- <input type="text" class="form-control"  placeholder="Status" formControlName="status"> -->
+        <select style="margin-left: 10px;" class='form-control' formControlName="status">
+          <option value='' disabled>Select Status</option>
+          <option value='Active'>Active</option>
+          <option value='In Active'>In Active</option>
+        </select>
+        </div>
+        <div class="col col-5 form-group">
+         <input class="form-control mr-10" type="file" placeholder="Icon Link" >
+        </div>
+        <div class="col col-5 form-group">
+          <select  style="margin-left: 10px;" class='form-control' formControlName="type">
+              <option value='' disabled>Select Type</option>
+              <option value='New'>New</option>
+              <option value='Old'>Old</option>
+            </select>
+          </div>
+        <div class="col col-5 form-group">
+          <label>{{editorConfig.placeholder}}</label>
+          <angular-editor style="margin-left: 10px;" id="membershipCreateAndEditEditor" formControlName="description" [config]="editorConfig"></angular-editor>
+          <!-- <input class="form-control mr-10" placeholder="Icon Link" formControlName="icon"> -->
+        </div>
+
+      </div>
+
+    </div>
+    <div align="center" style="margin-top:20px">
+
+      <button type="button" *ngIf="!childCategory.value.id" class="btn btn-success"
+        [disabled]="!childCategory.valid" (click)="createChildCategory()">Submit</button>
+        <button type="button" *ngIf="childCategory.value.id" class="btn btn-success"
+        [disabled]="!childCategory.valid" (click)="UpdateChildCat()">Update</button>
+    
+    </div>
+  </form>
+
+  <div class="dashboard-user-table">
+    <div class="dashboard-grid-heading">Child Collection</div>
+    <p>Total : {{filteredChild.length}} </p> 
+    <form [formGroup]="childCategory">
+    <div class="col col-5 form-group">
+         <select  class='form-control' formControlName="parentFilter">
+            <option value='' >Select Parent Category</option>
+            <option *ngFor="let item of enquiryList" value="{{item.id}}">{{item.name}}</option>
+          </select>
+       </div>
+    </form>
+    <div class="table-responsive-sm">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Category Name</th>
+            <th>Active</th>
+            <th>Action</th>
+          
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of filteredChild">
+            <td>
+              <img src="./../../../assets/images/{{record.icon}}.jpg" alt="User Pic">
+            </td>
+            <td>{{record.name}}</td>
+            <td>{{record.status}}</td>
+           
+            <td>
+              <!-- <span>
+                  <a class="view-action-btn mr-5" >
+                    <i class="fa fa-eye"></i>
+                  </a>
+                </span> -->
+            <span>
+              <a class="edit-action-btn mr-5" (click)="editActionChild(record)" >
+                <i class="fa fa-pencil"></i>
+              </a>
+            </span>
+            <!-- <span>
+              <a class="delete-action-btn" (click)="deleteChild(record)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </span> -->
+          </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-grid-heading">View/Add Product</div>
+
+
+  <form [formGroup]="productForm">
+    <div class="customSection">
+      <div class="row">
+      
+        <div class="col col-6 form-group">
+         <select  class='form-control' formControlName="parent" >
+            <option value='' disabled>Select Parent Category</option>
+            <option *ngFor="let item of enquiryList" value="{{item.id}}">{{item.name}}</option>
+          </select>
+       </div>
+       <div class="col col-6 form-group">
+        <select  class='form-control' formControlName="child">
+           <option value='' disabled>Select Child Category</option>
+           <option *ngFor="let item of childCategorylist" value="{{item.id}}">{{item.name}}</option>
+         </select>
+      </div>
+      
+
+      </div>
+
+    </div>
+    <div align="center" style="margin-top:20px">
+
+      <button type="button"  class="btn btn-success"
+        [disabled]="!productForm.valid" (click)="fetchProducts()">Submit</button>
+    </div>
+  </form>
+
+
+   
+  <div class="dashboard-user-table">
+    <div class="dashboard-grid-heading">Products</div>
+
+    <div class="">
+      <div class="row">
+      
+        <div class="col col-2 form-group">
+            <p>Total : {{productsList.length}} </p>
+        </div>
+        <div class="col col-4 form-group" *ngIf="selectedChildCat">
+            <div class="form-group col-12">
+                <input type="file"
+                id="file"
+                #userPhoto
+                (change)="firbaseUploadImage($event)"
+                name="image"
+                accept=".jpg,.png,.jpeg"
+                autocomplete="off"
+                />
+               </div>
+
+            <!-- <input type="file" accept=".jpg,.png,.jpeg" id="image-input" (change)="selectFile($event)"> -->
+        </div>
+        <!-- <div class="col col-4 form-group">
+            <img [src]="localCompressedURl" height="150px">
+
+        </div> -->
+      </div>
+    </div>
+   
+<!-- 
+   
+    <br><br> Original: Size: {{sizeOfOriginalImage | number : '1.2-2'}}MB
+    <br><img [src]="localUrl" height="200px">
+    <br><br><br> Compressed: Size: {{sizeOFCompressedImage | number : '1.2-2'}}MB<br>
+    <img [src]="localCompressedURl" height="150px"> -->
+
+    <div class="table-responsive-sm">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of productsList">
+            <td>
+              <img src="{{record.link}}" alt="User Pic">
+            </td>
+          
+            <td >
+            <!-- <span>
+              <a class="edit-action-btn mr-5" (click)="editActionChild(record)" >
+                <i class="fa fa-pencil"></i>
+              </a>
+            </span> -->
+            <span>
+              <a class="delete-action-btn" (click)="deleteSelectedProduct(record)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </span>
+          </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>

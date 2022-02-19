@@ -1,0 +1,18 @@
+.alert {
+    position: fixed;
+    top: 5%;
+    z-index: 1111;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+
+    i {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+
+    span {
+        font-size: 16px;
+    }
+}

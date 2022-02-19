@@ -1,0 +1,24 @@
+<app-header *ngIf="isLogin" class="top-header navbar navbar-dark fixed-top flex-md-nowrap p-0"></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <app-sidemenu *ngIf="isLogin" class="col-md-2 d-none d-md-block bg-light sidebar"></app-sidemenu>
+    <main role="main" [ngClass]="{'col-md-9 col-lg-10': isLogin, 'col-md-12 col-lg-12': !isLogin}"
+      class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
+<!-- <app-header  class="top-header navbar navbar-dark fixed-top flex-md-nowrap p-0"></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <app-sidemenu  class="col-md-2 d-none d-md-block bg-light sidebar"></app-sidemenu>
+    <main role="main" [ngClass]="{'col-md-9 col-lg-10': isLogin, 'col-md-12 col-lg-12': !isLogin}" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <router-outlet></router-outlet>  
+    </main>
+</div>
+</div> -->
+<!-- <app-footer *ngIf="isLogin"></app-footer> -->
+<app-alert></app-alert>
+<app-confirmation-dialog></app-confirmation-dialog>
+<app-loader></app-loader>

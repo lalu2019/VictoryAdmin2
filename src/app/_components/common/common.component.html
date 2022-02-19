@@ -1,0 +1,112 @@
+<div
+  class="main-header-title d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mt-3 mb-3 border-bottom">
+  <h1 class="h2">General Manager</h1>
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary" [class.active]="isActive('btn1')"
+    (click)="setActive('btn1')">Membership Plans</button>
+
+</div>
+
+<div *ngIf="isActiveButton == 'btn1'" class="mr-20">
+
+  <div class="dashboard-grid-heading">Add Membership</div>
+  <div class="row mr-20">
+    <form [formGroup]="membershipForm">
+      <div class="customSection">
+        <div class="row">
+
+          <div class="col col-6 form-group">
+
+            <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="title">
+          </div>
+          
+
+          <div class="col col-6 form-group">
+            <input type="number" class="form-control" placeholder="Enter actual Amount"
+              formControlName="actual_amount">
+          </div>
+          <div class="col col-6 form-group">
+            <input type="number" class="form-control" placeholder="Enter Offer Amount"
+              formControlName="offer_amout">
+
+          </div>
+          <div class="col col-6 form-group">
+            <input type="date" class="form-control" placeholder="Enter Offer End Date"
+              formControlName="offer_end">
+
+          </div>
+          <div class="col col-6 form-group">
+            <input class="form-control" placeholder="Enter Offer Conditions" formControlName="offer_terms">
+
+          </div>
+
+          <div class="col col-6 form-group">
+            <angular-editor id="membershipCreateAndEditEditor" formControlName="description" [config]="editorConfig"></angular-editor>
+            <!-- <input class="form-control mr-10" placeholder="Enter Description" formControlName="description"> -->
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div align="center" style="margin-top:20px">
+
+        <button type="button" *ngIf="!membershipForm.value.id" class="btn btn-success"
+          [disabled]="!membershipForm.valid" (click)="addMembership()">Submit</button>
+        <button type="button" *ngIf="membershipForm.value.id" class="btn btn-success" [disabled]="!membershipForm.valid"
+          (click)="updateMembership()">Update</button>
+
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <p>Total Contact : {{membershipList.length}} </p>
+    <div class="table-responsive-sm">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <!-- <th>#</th> -->
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actual Amount</th>
+            <th>Offer Amount</th>
+            <th>Offer End</th>
+            <th>Offer Conditions</th>
+            <th>CreatedDate</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div align="center" col="6" *ngIf="!membershipList.length">No Record Found </div>
+          <tr *ngFor="let membership of membershipList">
+            <!-- <td>1</td> -->
+            <td>{{membership.title}}</td>
+            <td [innerHTML]="membership.description"></td>
+            <td>{{membership.actual_amount}}</td>
+            <td>{{membership.offer_amout}}</td>
+            <td>{{membership.offer_end}}</td>
+            <td>{{membership.offer_terms}}</td>
+            <td>{{membership.createdDate}}</td>
+            <td>
+              <span>
+                <a class="edit-action-btn mr-5" (click)="editMembership(membership)">
+                  <i class="fa fa-pencil"></i>
+                </a>
+              </span>
+              <span>
+                <a class="delete-action-btn" (click)="deleteConfirmation(membership, 'membership')">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
