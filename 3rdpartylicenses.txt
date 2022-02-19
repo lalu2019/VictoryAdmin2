@@ -287,6 +287,9 @@ Apache-2.0
 @firebase/logger
 Apache-2.0
 
+@firebase/storage
+Apache-2.0
+
 @firebase/util
 Apache-2.0
 
@@ -398,6 +401,8 @@ firebase/auth
 firebase/database
 
 firebase/firestore
+
+firebase/storage
 
 font-awesome
 (OFL-1.1 AND MIT)
